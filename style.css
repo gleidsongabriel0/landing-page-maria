@@ -1,0 +1,248 @@
+/* === Reset & Base === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #F1E0C5;
+  --fg: #4E2907;
+  --primary: #7E1716;
+  --secondary: #71816D;
+  --accent: #EFB9B9;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-serif); }
+
+img { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+@media (min-width: 768px) { .container { padding: 0 48px; } }
+@media (min-width: 1024px) { .container { padding: 0 80px; } }
+
+/* === Hero === */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay { position: absolute; inset: 0; background: rgba(241, 224, 197, 0.6); }
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 96px 24px;
+}
+
+.hero-content h1 {
+  font-size: clamp(6rem, 12vw, 12rem);
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  margin-top: 24px;
+  color: var(--secondary);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+.hero-divider {
+  margin: 40px auto 0;
+  width: 64px;
+  height: 1px;
+  background: var(--secondary);
+}
+
+/* === Section common === */
+.section-subtitle {
+  color: var(--secondary);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 64px;
+}
+
+/* === Gallery === */
+.gallery { padding: 96px 0; }
+
+.gallery h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+}
+
+.gallery-item { border: 1px solid rgba(113, 129, 109, 0.3); overflow: hidden; }
+.gallery-item.tall { grid-row: span 2; }
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.7s ease;
+}
+.gallery-item:hover img { transform: scale(1.05); }
+
+.gallery-item.text-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.gallery-item.accent-bg { background: var(--accent); border: none; }
+.gallery-item.secondary-bg { background: rgba(113, 129, 109, 0.1); }
+
+.gallery-item .quote {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.6;
+  color: var(--fg);
+}
+
+.gallery-item .label {
+  text-align: center;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+.gallery-item .label:first-child { margin-top: 0; }
+
+/* === Stories === */
+.stories { padding: 96px 0; }
+
+.stories h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 96px;
+}
+
+.story:last-child { margin-bottom: 0; }
+
+@media (min-width: 768px) {
+  .story { grid-template-columns: 1fr 1fr; gap: 64px; }
+  .story.reversed .story-image { order: 2; }
+  .story.reversed .story-text { order: 1; }
+}
+
+.story-image { border: 1px solid rgba(113, 129, 109, 0.3); overflow: hidden; }
+.story-image img {
+  width: 100%; height: 320px; object-fit: cover;
+  transition: transform 0.7s ease;
+}
+.story-image:hover img { transform: scale(1.05); }
+
+@media (min-width: 768px) { .story-image img { height: 448px; } }
+
+.story-label {
+  color: var(--secondary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+.story-text h3 {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  color: var(--primary);
+  margin: 12px 0 24px;
+}
+
+.story-text > p { margin-bottom: 24px; line-height: 1.7; }
+
+.story-quote {
+  padding: 24px;
+  border-left: 2px solid;
+}
+.story-quote.primary-border { background: rgba(239, 185, 185, 0.4); border-color: var(--primary); }
+.story-quote.secondary-border { background: rgba(113, 129, 109, 0.1); border-color: var(--secondary); }
+
+.story-quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+/* === Footer === */
+.footer {
+  border-top: 1px solid rgba(113, 129, 109, 0.3);
+  padding: 64px 0;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Adicionado para centralizar todo o texto dentro da grid */
+}
+
+/* Removi a media-query do .footer-grid aqui porque ela tentava usar 
+   grid-template-columns em um elemento que está com display: flex, 
+   o que não funcionaria corretamente. Como só há um item central, o flex já resolve. */
+
+.footer-logo {
+  font-size: 1.875rem;
+  color: var(--primary);
+  margin-bottom: 16px;
+  /* Removidos o justify-content e align-items que não tinham efeito aqui */
+}
+
+.footer-desc {
+  color: rgba(78, 41, 7, 0.7);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  /* Removidos o justify-content e align-items que não tinham efeito aqui */
+}
+
+.footer-bottom {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(113, 129, 109, 0.2);
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: rgba(78, 41, 7, 0.4);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
